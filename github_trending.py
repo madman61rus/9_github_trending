@@ -15,8 +15,8 @@ def get_trending_repositories(top_size):
 
 def get_open_issues_amount(repo_owner, repo_name):
     '''Функция возвращает данные по количеству ошибок и  '''
-    ACCESS_TOKEN = '5ffd44f5abc9aea3f65db57d1cd3e5183093a0e6'
-    params = {'state':'open','access_token': ACCESS_TOKEN}
+    access_token = '5ffd44f5abc9aea3f65db57d1cd3e5183093a0e6'
+    params = {'state':'open','access_token': access_token}
     response = requests.get('https://api.github.com/repos/{}/{}/issues'.format(repo_owner,repo_name), params)
     return response.json()
 
