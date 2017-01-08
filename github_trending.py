@@ -12,12 +12,12 @@ def get_trending_repositories(top_size,weeks):
 
     return response.json()['items'][:top_size]
 
-def get_open_issues_amount(repo_owner, repo_name):
+
+def get_open_issues_info(repo_owner,repo_name):
     access_token = '5ffd44f5abc9aea3f65db57d1cd3e5183093a0e6'
-    params = {'state':'open','access_token': access_token}
-    response = requests.get('https://api.github.com/repos/{}/{}/issues'.format(repo_owner,repo_name), params)
-    issues = response.json()
-    return issues
+    params = {'state': 'open', 'access_token': access_token}
+    response = requests.get('https://api.github.com/repos/{}/{}/issues'.format(repo_owner, repo_name), params)
+    return response.json()
 
 def print_to_console(repos):
     for repo in repos:
@@ -25,7 +25,7 @@ def print_to_console(repos):
                                                                                        repo['stargazers_count'],
                                                                                        repo['open_issues']))
         counter = 1
-        for issue in get_open_issues_amount(repo.get('owner').get('login'), repo.get('name')):
+        for issue in get_open_issues_info(repo.get('owner').get('login'), repo.get('name')):
             print(' {}. описание -  {} , url - {} '.format(counter, issue['title'], issue['html_url']))
             counter += 1
         print()
